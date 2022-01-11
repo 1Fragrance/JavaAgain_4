@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Система учета платежей</title>
+</h:head>
+<h:body>
+    <h:form  id="id-form" >
+        <h2><h:outputText value ="Система учета платежей"></h:outputText></h2>
+        <h:dataTable style="border: 4px;" value="#{paymentBean.payments}"  var = "item" align="center" border="1" >
+            <h:column>
+                <f:facet name="header"> ID </f:facet>
+                <h:outputText value="#{item.id}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header"> Credit code </f:facet>
+                <h:outputText value="#{item.creditCode}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header" > Amount </f:facet>
+                <h:outputText value="#{item.value}"  />
+            </h:column>
+            <h:column>
+                <f:facet name="header"> Date </f:facet>
+                <h:outputText value="#{item.createDate}" />
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
+
+    <h:form>
+        <h2><h:outputText value ="Добавить новый платеж"></h:outputText></h2>
+        <h:panelGrid columns="3">
+            <h:outputLabel for="#{paymentBean.workingModel.creditCode}">Номер счета:</h:outputLabel>
+            <h:inputText value="#{paymentBean.workingModel.creditCode}" id="cname"></h:inputText>
+            <br/>
+
+            <h:outputLabel for="#{paymentBean.workingModel.value}">Сумма:</h:outputLabel>
+            <h:inputText value="#{paymentBean.workingModel.value}"></h:inputText>
+            <br/>
+
+            <h:commandButton action="#{paymentBean.savePayment}" value="Сохранить"></h:commandButton>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
